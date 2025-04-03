@@ -7,9 +7,20 @@ import { useEffect } from 'react';
 import './App.css';
 
 const App = () => {
+  const getWeatherByCurrentLocation = async (latitude, longitude) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${
+      import.meta.env.VITE_OPEN_WEATHER_API_KEY
+    }`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+  };
+
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords; // 현재 위치 위도 & 경도
+      getWeatherByCurrentLocation(latitude, longitude);
     });
   };
 
