@@ -10,17 +10,34 @@ import LocationButton from './components/LocationButton';
 
 const App = () => {
   const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState('');
 
   const cities = ['japan', 'vietnam', 'paris', 'new york'];
+
+  const fetchWeather = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setWeather(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getWeatherByCurrentLocation = async (latitude, longitude) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${
       import.meta.env.VITE_OPEN_WEATHER_API_KEY
     }&units=metric`;
 
-    const response = await fetch(url);
-    const data = await response.json();
-    setWeather(data);
+    fetchWeather(url);
+  };
+
+  const getWeatherByCity = async () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
+      import.meta.env.VITE_OPEN_WEATHER_API_KEY
+    }&units=metric`;
+
+    fetchWeather(url);
   };
 
   const getCurrentLocation = () => {
@@ -31,13 +48,17 @@ const App = () => {
   };
 
   useEffect(() => {
-    getCurrentLocation();
-  }, []);
+    if (city === '') {
+      getCurrentLocation();
+    } else {
+      getWeatherByCity();
+    }
+  }, [city]);
 
   return (
     <div className='container'>
       <Weather weather={weather} />
-      <LocationButton cities={cities} />
+      <LocationButton cities={cities} setCity={setCity} />
     </div>
   );
 };
