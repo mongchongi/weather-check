@@ -3,20 +3,24 @@
 // 3. 버튼을 클릭하면 그에 맞는 날씨 정보 보이기
 // 4. 정보를 가져오는 동안 로딩 중 표시
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Weather from './components/Weather';
 import LocationButton from './components/LocationButton';
 
 const App = () => {
+  const [weather, setWeather] = useState(null);
+
+  const cities = ['japan', 'vietnam', 'paris', 'new york'];
+
   const getWeatherByCurrentLocation = async (latitude, longitude) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${
       import.meta.env.VITE_OPEN_WEATHER_API_KEY
-    }`;
+    }&units=metric`;
 
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    setWeather(data);
   };
 
   const getCurrentLocation = () => {
@@ -32,8 +36,8 @@ const App = () => {
 
   return (
     <div className='container'>
-      <Weather />
-      <LocationButton />
+      <Weather weather={weather} />
+      <LocationButton cities={cities} />
     </div>
   );
 };
