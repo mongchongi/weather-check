@@ -1,0 +1,135 @@
+body {
+  height: 100vh;
+  background-image: url('./assets/weather-background.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.loading-spinner {
+  width: 150px;
+  height: 150px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.weather {
+  width: 500px;
+  text-align: center;
+  padding: 40px 50px;
+  font-weight: bold;
+  background: #d4e9e5;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.weather__condition,
+.weather__location {
+  font-size: 1.5rem;
+}
+
+.weather__temperature {
+  font-size: 3rem;
+}
+
+.weather__details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather__detail-title {
+  font-weight: normal;
+}
+
+.weather__detail-value {
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+.weather__detail-value span {
+  font-size: initial;
+  font-weight: normal;
+}
+
+.locations {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.locations__button {
+  width: calc((100% - (4 - 1) * 10px) / 4);
+  padding: 10px;
+  cursor: pointer;
+  background: #d4e9e5;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.locations__button--active {
+  background: #ecf5f7;
+}
+
+.locations__button--current {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .weather {
+    width: 300px;
+    padding: 20px 25px;
+  }
+
+  .weather__condition,
+  .weather__location {
+    font-size: 1.2rem;
+  }
+
+  .weather__temperature {
+    font-size: 2rem;
+  }
+
+  .weather__detail-title,
+  .weather__detail-value span {
+    font-size: 12px;
+  }
+
+  .weather__detail-value {
+    font-size: 1.2rem;
+  }
+
+  .locations {
+    width: 300px;
+  }
+
+  .locations__button {
+    width: calc((100% - (2 - 1) * 10px) / 2);
+  }
+
+  .locations__button--current {
+    width: 100%;
+  }
+}
