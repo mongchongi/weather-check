@@ -52,6 +52,14 @@ const App = () => {
     });
   };
 
+  const handleChangeCity = (selectedCity) => {
+    if (selectedCity === 'current') {
+      setCity('');
+    } else {
+      setCity(selectedCity);
+    }
+  };
+
   useEffect(() => {
     if (city === '') {
       setIsLoading(true);
@@ -79,7 +87,7 @@ const App = () => {
   return (
     <div className='container'>
       <Weather weather={weather} />
-      <LocationButton cities={cities} setCity={setCity} />
+      <LocationButton cities={cities} handleChangeCity={handleChangeCity} />
     </div>
   );
 };
