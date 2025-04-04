@@ -87,7 +87,7 @@ const App = () => {
   return (
     <div className='container'>
       <Weather weather={weather} />
-      <LocationButton cities={cities} handleChangeCity={handleChangeCity} />
+      <LocationButton cities={cities} currentCity={city} handleChangeCity={handleChangeCity} />
     </div>
   );
 };

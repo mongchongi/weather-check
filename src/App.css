@@ -89,7 +89,7 @@ body {
   text-transform: capitalize;
 }
 
-.locations__button:active {
+.locations__button--active {
   background: #ecf5f7;
 }
 
