@@ -1,0 +1,90 @@
+body {
+  height: 100vh;
+  background-image: url('./assets/weather-background.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.weather {
+  width: 500px;
+  text-align: center;
+  padding: 40px 50px;
+  font-weight: bold;
+  background: #d4e9e5;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.weather__condition {
+  font-size: 1.5rem;
+}
+
+.weather__temperature {
+  font-size: 3rem;
+}
+
+.weather__location {
+  font-size: 1.5rem;
+}
+
+.weather__details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather__detail-title {
+  font-weight: normal;
+}
+
+.weather__detail-value {
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+.weather__detail-value span {
+  font-size: initial;
+  font-weight: normal;
+}
+
+.locations {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.locations__button {
+  width: calc((500px - (4 - 1) * 20px) / 4);
+  padding: 10px;
+  cursor: pointer;
+  background: #d4e9e5;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  font-weight: bold;
+  color: ;
+}
+
+.locations__button:hover {
+  background: #ecf5f7;
+}
+
+.locations__button:active {
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+.locations__button--current {
+  width: 100%;
+}

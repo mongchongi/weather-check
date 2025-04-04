@@ -5,6 +5,8 @@
 
 import { useEffect } from 'react';
 import './App.css';
+import Weather from './components/Weather';
+import LocationButton from './components/LocationButton';
 
 const App = () => {
   const getWeatherByCurrentLocation = async (latitude, longitude) => {
@@ -28,7 +30,12 @@ const App = () => {
     getCurrentLocation();
   }, []);
 
-  return <div>App</div>;
+  return (
+    <div className='container'>
+      <Weather />
+      <LocationButton />
+    </div>
+  );
 };
 
 export default App;
