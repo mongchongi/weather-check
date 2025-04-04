@@ -21,7 +21,7 @@ body {
   font-weight: bold;
   background: #d4e9e5;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -69,7 +69,7 @@ body {
   background: #d4e9e5;
   border: none;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-weight: bold;
 }
 
