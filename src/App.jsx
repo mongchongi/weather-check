@@ -7,10 +7,13 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Weather from './components/Weather';
 import LocationButton from './components/LocationButton';
+import sunImage from './assets/sun.png';
 
 const App = () => {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const cities = ['japan', 'vietnam', 'paris', 'new york'];
 
@@ -20,11 +23,13 @@ const App = () => {
       const data = await response.json();
       setWeather(data);
     } catch (error) {
-      console.log(error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const getWeatherByCurrentLocation = async (latitude, longitude) => {
+  const getWeatherByCurrentLocation = (latitude, longitude) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${
       import.meta.env.VITE_OPEN_WEATHER_API_KEY
     }&units=metric`;
@@ -32,7 +37,7 @@ const App = () => {
     fetchWeather(url);
   };
 
-  const getWeatherByCity = async () => {
+  const getWeatherByCity = () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
       import.meta.env.VITE_OPEN_WEATHER_API_KEY
     }&units=metric`;
@@ -49,11 +54,27 @@ const App = () => {
 
   useEffect(() => {
     if (city === '') {
+      setIsLoading(true);
       getCurrentLocation();
     } else {
+      setIsLoading(true);
       getWeatherByCity();
     }
   }, [city]);
+
+  if (isLoading || !weather) {
+    return (
+      <div className='container'>
+        <img src={sunImage} alt='sun' className='loading-spinner' />
+      </div>
+    );
+  }
+
+  if (error) {
+    <div className='container'>
+      <div className='error-message'>{error}</div>
+    </div>;
+  }
 
   return (
     <div className='container'>
