@@ -27,16 +27,13 @@ body {
   gap: 30px;
 }
 
-.weather__condition {
+.weather__condition,
+.weather__location {
   font-size: 1.5rem;
 }
 
 .weather__temperature {
   font-size: 3rem;
-}
-
-.weather__location {
-  font-size: 1.5rem;
 }
 
 .weather__details {
@@ -62,11 +59,11 @@ body {
   width: 500px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 
 .locations__button {
-  width: calc((500px - (4 - 1) * 20px) / 4);
+  width: calc((100% - (4 - 1) * 10px) / 4);
   padding: 10px;
   cursor: pointer;
   background: #d4e9e5;
@@ -74,17 +71,49 @@ body {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   font-weight: bold;
-  color: ;
-}
-
-.locations__button:hover {
-  background: #ecf5f7;
 }
 
 .locations__button:active {
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  background: #ecf5f7;
 }
 
 .locations__button--current {
   width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .weather {
+    width: 300px;
+    padding: 20px 25px;
+  }
+
+  .weather__condition,
+  .weather__location {
+    font-size: 1.2rem;
+  }
+
+  .weather__temperature {
+    font-size: 2rem;
+  }
+
+  .weather__detail-title,
+  .weather__detail-value span {
+    font-size: 12px;
+  }
+
+  .weather__detail-value {
+    font-size: 1.2rem;
+  }
+
+  .locations {
+    width: 300px;
+  }
+
+  .locations__button {
+    width: calc((100% - (2 - 1) * 10px) / 2);
+  }
+
+  .locations__button--current {
+    width: 100%;
+  }
 }
