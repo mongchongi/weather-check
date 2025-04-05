@@ -8,6 +8,7 @@ import './App.css';
 import Weather from './components/Weather';
 import LocationButton from './components/LocationButton';
 import sunImage from './assets/sun.png';
+import thunderImage from './assets/thunder.png';
 
 const App = () => {
   const [weather, setWeather] = useState(null);
@@ -23,7 +24,7 @@ const App = () => {
       const data = await response.json();
       setWeather(data);
     } catch (error) {
-      setError(error.message);
+      setError(error);
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +71,7 @@ const App = () => {
     }
   }, [city]);
 
-  if (isLoading || !weather) {
+  if (isLoading) {
     return (
       <div className='container'>
         <img src={sunImage} alt='sun' className='loading-spinner' />
@@ -78,10 +79,15 @@ const App = () => {
     );
   }
 
-  if (error) {
-    <div className='container'>
-      <div className='error-message'>{error}</div>
-    </div>;
+  if (error || !weather) {
+    return (
+      <div className='container'>
+        <div className='error'>
+          <img src={thunderImage} alt='thunder' className='error__image' />
+          <span className='error__message'>Unable to get weather information...</span>
+        </div>
+      </div>
+    );
   }
 
   return (
